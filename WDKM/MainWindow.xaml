@@ -1,0 +1,82 @@
+﻿<Window x:Class="WDKM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:WDKM.ViewModel"
+        xmlns:local="clr-namespace:WDKM"
+        xmlns:taskbar="http://www.hardcodet.net/taskbar"
+        xmlns:instrumentary="clr-namespace:WDKM.Instrumentary"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="450" 
+        Width="800" 
+        Background="Black" 
+        WindowStyle="None" 
+        ResizeMode="NoResize" 
+        PreviewMouseLeftButtonDown="HeaderMenu_MouseDown" ShowInTaskbar="True">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Foreground" Value="#FF08E663"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Copperplate Gothic Light"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Foreground" Value="#FF08E663"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Copperplate Gothic Light"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="#FF08E663"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" 
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" 
+                          Value="True">
+                                <Setter Property="Opacity" 
+                           Value="0.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding 
+            Key="Enter" 
+            Command="{Binding Run}" 
+            CommandParameter="{Binding Command}"/>
+        <KeyBinding
+            Key="Tab"
+            Command="{Binding CancelPrintCommand}"/>
+    </Window.InputBindings>
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.9*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <taskbar:TaskbarIcon Visibility="Visible" ToolTipText="Runtime" IconSource="Icon.ico" TrayLeftMouseDown="TaskbarIcon_TrayLeftMouseDown" />
+        <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Hidden" instrumentary:ScrollViewerExtensions.AlwaysScrollToEnd="True" Margin="10,10,10,2" Grid.Row="0" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+            <TextBlock x:Name="ResultTextBlock" Text="{Binding Result}" TextWrapping="WrapWithOverflow" MouseDown="Window_PreviewMouseLeftButtonDown"/>
+        </ScrollViewer>
+        <TextBox x:Name="CommandTextBox" Text="{Binding Command, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Margin="10,0,10,10" KeyDown="CommandTextBox_KeyDown"/>
+        <TextBlock Text="{Binding Version, StringFormat={} Ver. {0}}" FontSize="12" Margin="0,0,5,5" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+    </Grid>
+</Window>
