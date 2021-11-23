@@ -14,9 +14,12 @@ namespace WDKM
             InitializeComponent();
             CommandTextBox.Focusable = true;
             CommandTextBox.Focus();
-/*            VideoViewWindow videoView = new VideoViewWindow();
-            videoView.Show();*/
+            CommandTextBox.TextChanged += CommandTextBox_TextChanged;
+            VideoViewWindow videoView = new VideoViewWindow();
+            videoView.Show();
         }
+
+        private void CommandTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e) => CommandTextBox.CaretIndex = CommandTextBox.Text.Length;
 
         private void HeaderMenu_MouseDown(object sender, MouseButtonEventArgs e) => DragMove();
 
@@ -34,5 +37,7 @@ namespace WDKM
         {
             ScrollViewer.ScrollToHorizontalOffset(ScrollViewer.HorizontalOffset + e.Delta);
         }
+        private void Window_Activated(object sender, System.EventArgs e) => this.Opacity = 1.0;
+        private void Window_Deactivated(object sender, System.EventArgs e) => this.Opacity = 0.5;
     }
 }

@@ -5,14 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WDKM.View"
         xmlns:cs="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        xmlns:vm="clr-namespace:WDKM.ViewModel"
         mc:Ignorable="d"
-        Title="VideoViewWindow" Height="450" Width="800">
-    <Grid>
+        WindowStyle="None"
+        Title="Video" Height="650" Width="1200"
+        ResizeMode="NoResize" Activated="Window_Activated" Deactivated="Window_Deactivated">
+    <Window.DataContext>
+        <vm:VideoViewWindowViewModel/>
+    </Window.DataContext>
+    <Grid Background="Black">
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.9*"/>
+            <RowDefinition Height="0.05*"/>
         </Grid.RowDefinitions>
-        <cs:ChromiumWebBrowser Address="google.com"/>
-
+        <Border Background="#FF444444" PreviewMouseLeftButtonDown="Browser_MouseDown"/>
+        <cs:ChromiumWebBrowser Address="youtube.com" Grid.Row="1"/>
+        <TextBox x:Name="CommandLine" 
+                 Grid.Row="2" 
+                 Background="Black" 
+                 Foreground="Green" 
+                 VerticalAlignment="Center" 
+                 PreviewMouseLeftButtonDown="TextBox_PreviewMouseLeftButtonDown" 
+                 BorderThickness="0"
+                 Text="{Binding Command, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Window>

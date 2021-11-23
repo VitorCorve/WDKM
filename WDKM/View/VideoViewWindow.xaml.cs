@@ -22,6 +22,13 @@ namespace WDKM.View
         public VideoViewWindow()
         {
             InitializeComponent();
+            CommandLine.Focusable = true;
+            CommandLine.Focus();
         }
+        private void Browser_MouseDown(object sender, MouseButtonEventArgs e) => DragMove();
+
+        private void TextBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e) => CommandLine.Focus();
+        private void Window_Activated(object sender, System.EventArgs e) => this.Opacity = 1.0;
+        private void Window_Deactivated(object sender, System.EventArgs e) => this.Opacity = 0.5;
     }
 }

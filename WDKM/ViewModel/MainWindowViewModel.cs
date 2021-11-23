@@ -15,16 +15,23 @@ namespace WDKM.ViewModel
         private string _Result;
         public string Command { get => _Command; set { _Command = value; OnPropertyChanged() ; } }
         public string Result { get => _Result; set { _Result = value; OnPropertyChanged() ; } }
+        public static List<string> CommandsList { get; set; }
+        public int CommandsListSelectionIndex { get; set; }
         public static DateTimeHandler Date { get; set; }
         public string Version { get; set; }
         public CommandsHandler Handler { get; set; }
         public ICommand Run { get; set; }
         public static ICommand PrintCommand { get; set; }
-        public ICommand CancelPrintCommand { get; set; }
+        public static ICommand CancelPrintCommand { get; set; }
+        public ICommand ShowNextCommand { get; set; }
+        public ICommand ShowPreviousCommand { get; set; }
+        public static ICommand CleanCommand { get; set; }
         public static bool AbleToPrint { get; set; }
         public MainWindowViewModel()
         {
-            Version = "0.0.3";
+            Version = "0.0.4";
+
+            CommandsList = new List<string>();
             Handler = new CommandsHandler(this);
 
             Date = new DateTimeHandler();
@@ -32,6 +39,9 @@ namespace WDKM.ViewModel
             Run = new RunCommand(this);
             PrintCommand = new PrintCommand(this);
             CancelPrintCommand = new CancelPrintCommand();
+            ShowNextCommand = new ShowNextCommand(this);
+            ShowPreviousCommand = new ShowPreviousCommand(this);
+            CleanCommand = new CleanCommand(this);
 
             Print("Loaded");
         }
@@ -71,7 +81,6 @@ namespace WDKM.ViewModel
                     }
                 }
             });
-            //Clean();
         }
         private void Clean()
         {

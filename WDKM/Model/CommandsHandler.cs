@@ -15,6 +15,8 @@ namespace WDKM.Model
         }
         public void Handle(string command)
         {
+            MainWindowViewModel.CommandsList.Add(command);
+
             command = command.ToLower();
 
             string[] multiLevelCommand = command.Split(" ");
@@ -41,6 +43,11 @@ namespace WDKM.Model
                     return;
                 case "of":
                     OpenFileHandlerCommand.Execute();
+                    return;
+                case "clean":
+                    Thread.Sleep(100);
+                    MainWindowViewModel.CancelPrintCommand.Execute(null);
+                    MainWindowViewModel.CleanCommand.Execute(null);
                     return;
                 case "ex":
                     ExitHandlerCommand.Execute();
@@ -80,7 +87,7 @@ namespace WDKM.Model
                     MainWindowViewModel.PrintCommand.Execute("\n Reboot?\t Y : N");
                     return;
                 default:
-                    Thread.Sleep(10);
+                    Thread.Sleep(100);
                     MainWindowViewModel.PrintCommand.Execute("\nNot recognized\n");
                     break;
             }
@@ -98,6 +105,8 @@ namespace WDKM.Model
                     WikiParserHandlerCommand.Execute(command[1]);
                     return;
                 default:
+                    Thread.Sleep(100);
+                    MainWindowViewModel.PrintCommand.Execute("\nNot recognized\n");
                     break;
             }
         }
@@ -111,6 +120,8 @@ namespace WDKM.Model
                     WikiParserHandlerCommand.Execute(command[1], command[2]);
                     return;
                 default:
+                    Thread.Sleep(100);
+                    MainWindowViewModel.PrintCommand.Execute("\nNot recognized\n");
                     break;
             }
         }

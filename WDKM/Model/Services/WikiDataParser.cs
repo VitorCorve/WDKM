@@ -35,12 +35,12 @@ namespace WDKM.Model.Services
                         for (int i = 0; i < result.Count - 1; i++)
                             body += result[i].InnerText + "\n";
 
-                        return new ArticleDataView(title, body).BuildArticleView();
+                        return new ArticleDataView(title, body.Replace("&#", "")).BuildArticleView();
                     }
                     else
                     {
                         body = "\n" + result[1].InnerText + "\n";
-                        return new ArticleDataView(title, body).BuildArticleView();
+                        return new ArticleDataView(title, body.Replace("&#", "")).BuildArticleView();
                     }
 
 

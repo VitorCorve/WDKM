@@ -8,13 +8,14 @@
         xmlns:taskbar="http://www.hardcodet.net/taskbar"
         xmlns:instrumentary="clr-namespace:WDKM.Instrumentary"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="Console"
+        Background="Black"
         Height="450" 
         Width="800" 
-        Background="Black" 
         WindowStyle="None" 
         ResizeMode="NoResize" 
-        PreviewMouseLeftButtonDown="HeaderMenu_MouseDown" ShowInTaskbar="True">
+        AllowsTransparency="True"
+        PreviewMouseLeftButtonDown="HeaderMenu_MouseDown" ShowInTaskbar="True" Activated="Window_Activated" Deactivated="Window_Deactivated">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Background" Value="Black"/>
@@ -76,7 +77,16 @@
         <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Hidden" instrumentary:ScrollViewerExtensions.AlwaysScrollToEnd="True" Margin="10,10,10,2" Grid.Row="0" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
             <TextBlock x:Name="ResultTextBlock" Text="{Binding Result}" TextWrapping="WrapWithOverflow" MouseDown="Window_PreviewMouseLeftButtonDown"/>
         </ScrollViewer>
-        <TextBox x:Name="CommandTextBox" Text="{Binding Command, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Margin="10,0,10,10" KeyDown="CommandTextBox_KeyDown"/>
+        <TextBox x:Name="CommandTextBox" Text="{Binding Command, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Margin="10,0,10,10" KeyDown="CommandTextBox_KeyDown" CaretBrush="#FF08E663">
+            <TextBox.InputBindings>
+                <KeyBinding
+            Key="Up"
+            Command="{Binding ShowNextCommand}"/>
+                <KeyBinding
+            Key="Down"
+            Command="{Binding ShowPreviousCommand}"/>
+            </TextBox.InputBindings>
+        </TextBox>
         <TextBlock Text="{Binding Version, StringFormat={} Ver. {0}}" FontSize="12" Margin="0,0,5,5" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>
