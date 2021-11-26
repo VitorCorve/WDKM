@@ -29,6 +29,7 @@
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="FontFamily" Value="Copperplate Gothic Light"/>
+            <Setter Property="CaretBrush" Value="#FF08E663"/>
         </Style>
         <Style TargetType="Button">
             <Setter Property="Width" Value="100"/>
@@ -77,7 +78,7 @@
         <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Hidden" instrumentary:ScrollViewerExtensions.AlwaysScrollToEnd="True" Margin="10,10,10,2" Grid.Row="0" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
             <TextBlock x:Name="ResultTextBlock" Text="{Binding Result}" TextWrapping="WrapWithOverflow" MouseDown="Window_PreviewMouseLeftButtonDown"/>
         </ScrollViewer>
-        <TextBox x:Name="CommandTextBox" Text="{Binding Command, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Margin="10,0,10,10" KeyDown="CommandTextBox_KeyDown" CaretBrush="#FF08E663">
+        <TextBox x:Name="CommandTextBox" Text="{Binding Command, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Margin="10,0,10,10" KeyDown="CommandTextBox_KeyDown">
             <TextBox.InputBindings>
                 <KeyBinding
             Key="Up"

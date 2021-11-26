@@ -21,6 +21,7 @@ namespace WDKM.Model.Services
             list.Add("\nreb\t - \tReboot system");
             list.Add("\nvkp\t - \tParse VK user info by ID. Syntax: vkp id1");
             list.Add("\nwiki\t - \tGet wiki article. Use 'wiki article full' - to see full article");
+            list.Add("\nytb\t - \tOpen Youtube. Use \"ytb &keyword&\" syntax to search quickly");
 
             return list;
         }

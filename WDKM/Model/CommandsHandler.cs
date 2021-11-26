@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using WDKM.Model.HandlerCommands;
 using WDKM.Model.HandlerCommands.Interfaces;
+using WDKM.Model.HandlerCommands.Youtube;
 using WDKM.ViewModel;
 
 namespace WDKM.Model
@@ -85,6 +86,9 @@ namespace WDKM.Model
                     TemporaryCommand = new RestartHandlerCommand();
                     Thread.Sleep(100);
                     MainWindowViewModel.PrintCommand.Execute("\n Reboot?\t Y : N");
+                    return;
+                case "ytb":
+                    OpenYoutubeHandleCommand.Execute();
                     return;
                 default:
                     Thread.Sleep(100);

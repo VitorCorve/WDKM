@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using WDKM.StaticMembers;
 using WDKM.View;
 
 namespace WDKM
@@ -15,8 +16,8 @@ namespace WDKM
             CommandTextBox.Focusable = true;
             CommandTextBox.Focus();
             CommandTextBox.TextChanged += CommandTextBox_TextChanged;
-            VideoViewWindow videoView = new VideoViewWindow();
-            videoView.Show();
+
+            ActiveWindows.Add(this);
         }
 
         private void CommandTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e) => CommandTextBox.CaretIndex = CommandTextBox.Text.Length;

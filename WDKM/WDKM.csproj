@@ -17,11 +17,17 @@
     <PackageReference Include="CefSharp.Wpf.NETCore" Version="95.7.141" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.38" />
+    <PackageReference Include="Microsoft.Owin" Version="4.0.1" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+    <PackageReference Include="Owin" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\Youtube\" />
   </ItemGroup>
 
 </Project>

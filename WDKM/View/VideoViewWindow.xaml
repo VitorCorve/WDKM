@@ -9,7 +9,17 @@
         mc:Ignorable="d"
         WindowStyle="None"
         Title="Video" Height="650" Width="1200"
-        ResizeMode="NoResize" Activated="Window_Activated" Deactivated="Window_Deactivated">
+        ResizeMode="NoResize" Activated="Window_Activated" Deactivated="Window_Deactivated" Name="video">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Foreground" Value="#FF08E663"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Copperplate Gothic Light"/>
+            <Setter Property="CaretBrush" Value="#FF08E663"/>
+        </Style>
+    </Window.Resources>
     <Window.DataContext>
         <vm:VideoViewWindowViewModel/>
     </Window.DataContext>
@@ -22,12 +32,16 @@
         <Border Background="#FF444444" PreviewMouseLeftButtonDown="Browser_MouseDown"/>
         <cs:ChromiumWebBrowser Address="youtube.com" Grid.Row="1"/>
         <TextBox x:Name="CommandLine" 
+                 Margin="5,0,0,0" 
                  Grid.Row="2" 
                  Background="Black" 
-                 Foreground="Green" 
                  VerticalAlignment="Center" 
                  PreviewMouseLeftButtonDown="TextBox_PreviewMouseLeftButtonDown" 
                  BorderThickness="0"
-                 Text="{Binding Command, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Command, UpdateSourceTrigger=PropertyChanged}">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Enter" Command="{Binding Run}"/>
+            </TextBox.InputBindings>
+        </TextBox>
     </Grid>
 </Window>

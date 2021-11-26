@@ -15,7 +15,7 @@ namespace WDKM.Model.HandlerCommands
                 Thread.Sleep(10);
                 MainWindowViewModel.PrintCommand.Execute("Exit...");
                 Thread.Sleep(100);
-                Application.Current.Shutdown();
+                System.Windows.Application.Current.Shutdown();
             });
         }
         public void Run() => Execute();

@@ -29,7 +29,7 @@ namespace WDKM.ViewModel
         public static bool AbleToPrint { get; set; }
         public MainWindowViewModel()
         {
-            Version = "0.0.4";
+            Version = "0.0.5";
 
             CommandsList = new List<string>();
             Handler = new CommandsHandler(this);
